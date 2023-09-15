@@ -1,97 +1,169 @@
-import { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { useEffect } from "react";
+import Checkbox from "@/Components/Checkbox";
+import GuestLayout from "@/Layouts/GuestLayout";
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
+import { Head, Link, useForm } from "@inertiajs/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
         remember: false,
     });
 
     useEffect(() => {
         return () => {
-            reset('password');
+            reset("password");
         };
     }, []);
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route("login"));
     };
 
     return (
         <GuestLayout>
             <Head title="Log in" />
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
+            {status && (
+                <div className="mb-4 font-medium text-sm text-green-600">
+                    {status}
                 </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
+            )}
+            <div className="login-box">
+                <div className="card card-outline card-primary">
+                    <div className="card-header text-center">
+                        <Link href="/" className="h1">
+                            <b>Admin</b>LTE
                         </Link>
-                    )}
+                    </div>
+                    <div className="card-body">
+                        <p className="login-box-msg">
+                            Sign in to start your session
+                        </p>
+                        <form onSubmit={submit}>
+                            <div className="input-group mb-3">
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    placeholder="Email"
+                                    id="email"
+                                    name="email"
+                                    value={data.email}
+                                    autoComplete="username"
+                                    // isFocused={true}
+                                    onChange={(e) =>
+                                        setData("email", e.target.value)
+                                    }
+                                />
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                                <div className="input-group-append">
+                                    <div className="input-group-text">
+                                        <FontAwesomeIcon
+                                            icon={faEnvelope}
+                                            className="icon-class"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <InputError
+                                message={errors.email}
+                                className="mt-2"
+                            />
+
+                            <div className="input-group mb-3">
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    placeholder="Password"
+                                    id="password"
+                                    name="password"
+                                    value={data.password}
+                                    autoComplete="current-password"
+                                    onChange={(e) =>
+                                        setData("password", e.target.value)
+                                    }
+                                />
+
+                                <div className="input-group-append">
+                                    <div className="input-group-text">
+                                        <FontAwesomeIcon
+                                            icon={faLock}
+                                            className="icon-class"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <InputError
+                                message={errors.password}
+                                className="mt-2"
+                            />
+
+                            <div className="row">
+                                <div className="col-8">
+                                    <div className="icheck-primary">
+                                        <input
+                                            type="checkbox"
+                                            name="remember"
+                                            checked={data.remember}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "remember",
+                                                    e.target.checked
+                                                )
+                                            }
+                                        />
+                                        <label htmlFor="remember">
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div className="col-4">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary btn-block"
+                                        disabled={processing}
+                                    >
+                                        Sign In
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div className="social-auth-links text-center mt-2 mb-3">
+                            <a href="#" className="btn btn-block btn-primary">
+                                <FontAwesomeIcon icon={faFacebook} /> Sign in
+                                using Facebook
+                            </a>
+                            <a href="#" className="btn btn-block btn-danger">
+                                <FontAwesomeIcon icon={faGooglePlus} /> Sign in
+                                using Google+
+                            </a>
+                        </div>
+
+                        <p className="mb-1">
+                            {canResetPassword && (
+                                <Link href={route("password.request")}>
+                                    Forgot your password?
+                                </Link>
+                            )}
+                        </p>
+                        <p className="mb-0">
+                            <Link href={route("register")}>
+                                Register a new membership
+                            </Link>
+                        </p>
+                    </div>
                 </div>
-            </form>
+            </div>
         </GuestLayout>
     );
 }

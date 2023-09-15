@@ -1,14 +1,21 @@
-import { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSearch, faTh,faAngleLeft , faCopy  } from '@fortawesome/free-solid-svg-icons';
+import { useState } from "react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import Dropdown from "@/Components/Dropdown";
+import NavLink from "@/Components/NavLink";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { Link } from "@inertiajs/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faBars,
+    faSearch,
+    faTh,
+    faAngleLeft,
+    faCopy,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] =
+        useState(false);
 
     return (
         <div className="hold-transition sidebar-mini layout-fixed">
@@ -27,8 +34,12 @@ export default function Authenticated({ user, header, children }) {
                         </li>
 
                         <li className="nav-item d-none d-sm-inline-block">
-                            <Link className="nav-link" href={route('dashboard')} active={route().current('dashboard')}>
-                                    Home
+                            <Link
+                                className="nav-link"
+                                href={route("dashboard")}
+                                active={route().current("dashboard")}
+                            >
+                                Home
                             </Link>
                         </li>
                     </ul>
@@ -215,16 +226,15 @@ export default function Authenticated({ user, header, children }) {
                     <section className="content">
                         <div className="container-fluid">{children}</div>
                     </section>
-                    {/* /.content */}
                 </div>
 
-                <footer class="main-footer">
+                <footer className="main-footer">
                     <strong>
                         Copyright &copy; 2023{" "}
                         <a href="">Laravel React Inertia</a>.
                     </strong>
                     &nbsp; All rights reserved.
-                    <div class="float-right d-none d-sm-inline-block">
+                    <div className="float-right d-none d-sm-inline-block">
                         <b>Version</b> 1.0.0
                     </div>
                 </footer>
