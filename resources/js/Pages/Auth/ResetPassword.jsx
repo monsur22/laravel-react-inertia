@@ -58,8 +58,8 @@ export default function ResetPassword({ token, email }) {
                                         }
                                         disabled
                                     />
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
+                                    <div className="input-group-append">
+                                        <div className="input-group-text">
                                             <FontAwesomeIcon
                                                 icon={faEnvelope}
                                                 className="icon-class"

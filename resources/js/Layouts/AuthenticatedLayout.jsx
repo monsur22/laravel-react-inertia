@@ -193,16 +193,22 @@ export default function Authenticated({ user, header, children }) {
                                             icon={faTh}
                                             className="nav-icon"
                                         />
-                                        <p>Widgets</p>
+                                <Link href={route("dashboard")}>
+                                <p>Dashboard</p>
+
+                                </Link>
                                     </a>
                                 </li>
                                 <li className="nav-item">
+
                                     <a href="#" className="nav-link">
                                         <FontAwesomeIcon
                                             icon={faCopy}
                                             className="nav-icon"
                                         />
-                                        <p>Layout Options</p>
+                                <Link href={route("tasks.index")}>
+                                <p>Task</p>
+                                </Link>
                                     </a>
                                 </li>
                             </ul>
@@ -214,9 +220,9 @@ export default function Authenticated({ user, header, children }) {
                         <div className="container-fluid">
                             <div className="row mb-2">
                                 <div className="col-sm-6">
-                                    {header && (
-                                        <h1 className="m-0">{header}</h1>
-                                    )}
+                                {header && (
+                                <h1 className="m-0">{header}</h1>
+                                )}
                                 </div>
                             </div>
                         </div>
