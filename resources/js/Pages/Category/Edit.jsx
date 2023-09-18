@@ -3,21 +3,16 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react'
 
-const Task_edit = ({auth,task}) => {
-    // const [values, setValues] = useState({
-    //     title: task.title,
-    //     description: task.description
-    // });
+const Edit = ({auth,category_edit}) => {
 
     const { data, setData, put, errors } = useForm({
-        title: task.title || "",
-        description: task.description || "",
+        title: category_edit.title || ""
     });
     function handleUpdate(e){
         e.preventDefault();
         console.log("updated function")
         // router.patch(`/tasks/${task.id}`, values)
-        put(route("tasks.update", task.id));
+        put(route("category.update", category_edit.id));
 
     }
   return (
@@ -25,7 +20,7 @@ const Task_edit = ({auth,task}) => {
           user={auth.user}
           header={
               <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                  Task Edit
+                  Category Edit
               </h2>
           }
       >
@@ -34,7 +29,7 @@ const Task_edit = ({auth,task}) => {
               <div className="col-md-6">
                   <div className="card card-primary">
                       <div className="card-header">
-                          <h3 className="card-title">Edit Task</h3>
+                          <h3 className="card-title">Edit Category</h3>
                       </div>
                       <form onSubmit={handleUpdate}>
                           <div className="card-body">
@@ -50,19 +45,6 @@ const Task_edit = ({auth,task}) => {
                                         setData("title", e.target.value)
                                       }
                                   />
-                              </div>
-                              <div className="form-group">
-                                  <label>Description</label>
-                                  <textarea
-                                      className="form-control"
-                                      rows="3"
-                                      placeholder="Enter ..."
-                                      name="description"
-                                      value={data.description}
-                                      onChange={(e) =>
-                                        setData("description", e.target.value)
-                                      }
-                                  ></textarea>
                               </div>
                           </div>
                           <div className="card-footer">
@@ -81,4 +63,4 @@ const Task_edit = ({auth,task}) => {
   );
 }
 
-export default Task_edit
+export default Edit

@@ -14,8 +14,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showSubMenu, setShowSubMenu] = useState(false);
+
+    const toggleSubMenu = () => {
+      setShowSubMenu(!showSubMenu);
+    };
 
     return (
         <div className="hold-transition sidebar-mini layout-fixed">
@@ -202,13 +206,34 @@ export default function Authenticated({ user, header, children }) {
                                 <li className="nav-item">
 
                                     <a href="#" className="nav-link">
-                                        <FontAwesomeIcon
-                                            icon={faCopy}
-                                            className="nav-icon"
-                                        />
-                                <Link href={route("tasks.index")}>
-                                <p>Task</p>
-                                </Link>
+                                        <FontAwesomeIcon icon={faCopy} className="nav-icon" />
+                                        <Link href={route("tasks.index")}>
+                                            <p>Task</p>
+                                        </Link>
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a href="#" className="nav-link">
+                                        <FontAwesomeIcon icon={faCopy} className="nav-icon" />
+                                        <Link href={route("category.index")}>
+                                            <p>Category</p>
+                                        </Link>
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a href="#" className="nav-link">
+                                        <FontAwesomeIcon icon={faCopy} className="nav-icon" />
+                                        <Link href={route("tasks.index")}>
+                                            <p>Supplier</p>
+                                        </Link>
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a href="#" className="nav-link">
+                                        <FontAwesomeIcon icon={faCopy} className="nav-icon" />
+                                        <Link href={route("tasks.index")}>
+                                            <p>Product</p>
+                                        </Link>
                                     </a>
                                 </li>
                             </ul>
